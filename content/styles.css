@@ -1,0 +1,87 @@
+.bye-input-lost-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2147483647;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  padding: 16px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 320px;
+  animation: bye-input-lost-slide-in 0.3s ease-out;
+}
+
+@keyframes bye-input-lost-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bye-input-lost-hiding {
+  animation: bye-input-lost-slide-out 0.3s ease-out forwards !important;
+}
+
+@keyframes bye-input-lost-slide-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.bye-input-lost-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bye-input-lost-text {
+  font-weight: 500;
+}
+
+.bye-input-lost-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.bye-input-lost-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bye-input-lost-restore {
+  background: #4CAF50;
+  color: white;
+}
+
+.bye-input-lost-restore:hover {
+  background: #45a049;
+}
+
+.bye-input-lost-discard {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.bye-input-lost-discard:hover {
+  background: #e8e8e8;
+}

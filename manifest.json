@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Bye Input Lost",
+  "version": "1.0.0",
+  "description": "Stores user input text to prevent data loss when accidentally closing the page",
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/content.js"],
+      "css": ["content/styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html"
+  }
+}

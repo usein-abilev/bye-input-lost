@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      width: 360px;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 14px;
+      color: #333;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .settings {
+      background: #f5f5f5;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .settings-label {
+      font-size: 13px;
+      color: #555;
+    }
+    .toggle {
+      position: relative;
+      width: 44px;
+      height: 24px;
+    }
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.2s;
+      border-radius: 24px;
+    }
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.2s;
+      border-radius: 50%;
+    }
+    .toggle input:checked + .toggle-slider {
+      background-color: #4CAF50;
+    }
+    .toggle input:checked + .toggle-slider:before {
+      transform: translateX(20px);
+    }
+    .drafts-header {
+      font-size: 13px;
+      font-weight: 600;
+      color: #666;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .draft-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .draft-item {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .draft-domain {
+      font-weight: 600;
+      font-size: 13px;
+      color: #333;
+      margin-bottom: 4px;
+    }
+    .draft-url {
+      font-size: 11px;
+      color: #999;
+      margin-bottom: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .draft-preview {
+      font-size: 12px;
+      color: #666;
+      background: #f9f9f9;
+      padding: 6px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      max-height: 40px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .draft-meta {
+      font-size: 11px;
+      color: #aaa;
+      margin-bottom: 8px;
+    }
+    .draft-actions {
+      display: flex;
+      gap: 6px;
+    }
+    .draft-btn {
+      flex: 1;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .draft-restore {
+      background: #4CAF50;
+      color: white;
+    }
+    .draft-restore:hover {
+      background: #45a049;
+    }
+    .draft-remove {
+      background: #f5f5f5;
+      color: #666;
+    }
+    .draft-remove:hover {
+      background: #e8e8e8;
+    }
+    .clear-btn {
+      width: 100%;
+      padding: 10px;
+      background: #f5f5f5;
+      border: none;
+      border-radius: 6px;
+      color: #666;
+      cursor: pointer;
+      font-size: 13px;
+      margin-top: 12px;
+    }
+    .clear-btn:hover {
+      background: #e8e8e8;
+    }
+    .empty {
+      text-align: center;
+      color: #999;
+      padding: 20px 0;
+    }
+    .section {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bye Input Lost</h1>
+  
+  <div class="section">
+    <div class="settings">
+      <span class="settings-label">Show notification on page visit</span>
+      <label class="toggle">
+        <input type="checkbox" id="notifyToggle">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="drafts-header">Saved Drafts</div>
+    <div id="draftList" class="draft-list">
+      <div class="empty">No saved drafts</div>
+    </div>
+  </div>
+
+  <button id="clearAll" class="clear-btn">Clear All Saved Drafts</button>
+  <script src="popup.js"></script>
+</body>
+</html>
